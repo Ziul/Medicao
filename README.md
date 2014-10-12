@@ -1,5 +1,4 @@
-# Medição e Análise
-
+# Measurement and Analysis
 
 Analysis of [Gestor Psi](https://github.com/carloshfoliveira/gestorpsi)
 
