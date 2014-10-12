@@ -4,7 +4,6 @@
 all: clean optimize
 
 do: *.tex
-	./latex-git-log --author --width=5 --lang=en > ./conteudo/commit_log.tex
 	if test -f *.bib ;\
 	then \
 		pdflatex main;\
@@ -39,7 +38,7 @@ do: *.tex
 # Compila a cada alteração de qualquer arquivo *.tex ou de qualquer *.vhd dentro da pasta 'src'
 main: *.tex *.bib clean
 	clear
-#	pdflatex -interaction errorstopmode -interaction=batchmode main.tex
+	./latex-git-log --author --width=5 --lang=en > ./conteudo/commit_log.tex
 	pdflatex main.tex
 	clear
 	echo " ";\
