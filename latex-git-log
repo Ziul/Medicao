@@ -32,7 +32,7 @@ use Locale::Maketext::Simple (
 
 # Optional parameters {{{
 my $print_author = 0;
-my $commit_count = 1;
+my $commit_count = 0.0;
 my $width        = 0;
 my $lang         = undef;
 my $version      = 0;

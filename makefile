@@ -37,22 +37,24 @@ do: *.tex
 	@make clean
 
 # Compila a cada alteração de qualquer arquivo *.tex ou de qualquer *.vhd dentro da pasta 'src'
-main.pdf: *.tex *.bib clean
+main: *.tex *.bib clean
 	clear
 #	pdflatex -interaction errorstopmode -interaction=batchmode main.tex
 	pdflatex main.tex
 	clear
-	@echo "Compilado pela primeira vez...Feito."
-	make bib
-	@echo "Compilando pela segunda vez:"
-	@pdflatex -interaction=batchmode main.tex
-	@echo -n "Feito\nCompilando pela ultima vez:\n"
-	@pdflatex -interaction=batchmode main.tex
-	@echo -n "Limpando sujeira..."
-	@make clean
-	@echo "Feito."
+	echo " ";\
+	echo -n "Montando bibliografias..." ;\
+	pdflatex main;\
+	pdflatex -interaction=batchmode main;\
+	bibtex main -terse;\
+	pdflatex -interaction=batchmode main;\
+	makeglossaries main;\
+	makeindex main.glo -s main.ist -t main.glg -o main.gls;\
+	pdflatex -interaction=batchmode main;\
+	pdflatex -interaction=batchmode main;\
+	echo "Feito.";\
 	
-optimize: do
+optimize: main
 	clear
 	mv main.pdf "$(notdir $(PWD)).pdf"
 	@echo "Informações do arquivo gerado:" $(notdir $(PWD)).pdf
