@@ -4,6 +4,7 @@
 all: clean optimize
 
 do: *.tex
+	./latex-git-log --author --width=5 --lang=en > ./conteudo/commit_log.tex
 	if test -f *.bib ;\
 	then \
 		pdflatex main;\

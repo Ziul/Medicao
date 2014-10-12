@@ -1,7 +1,7 @@
-\documentclass[journal,compsoc]{IEEEtran}\newcommand{\journal}{true}
+% \documentclass[journal,compsoc]{IEEEtran}\newcommand{\journal}{true}
 % \documentclass[conference]{IEEEtran}\newcommand{\journal}{false}
 % \documentclass[12pt,openright,twoside,a4paper,english,french,spanish]{abntex2}
-% \documentclass[a4paper,14pt]{report}
+\documentclass[a4paper,14pt]{report}
 % \documentclass[a4paper]{coursepaper}
 % \documentclass[12pt,answers]{exam}
 % \documentclass[a4paper,11pt]{article}
@@ -20,10 +20,9 @@
 
 \selectlanguage{english}   %voltando para o português.
 \onecolumn    %Conferir se pode ser feito em duas colunas
-\imprimeabstract %Dependendo do modelo, tem que ficar antes ou depois de \maketitle
-\maketitle
-% \input capa       %exemplo de personalização de capa/titulo
 % \imprimeabstract %Dependendo do modelo, tem que ficar antes ou depois de \maketitle
+% \maketitle
+\input capa       %exemplo de personalização de capa/titulo
 
 
 
@@ -33,12 +32,15 @@
 
   \selectlanguage{brazil}   %voltando para o português.
 
-  %\tableofcontents     % Sumario
+\input{conteudo/historico}
+  \tableofcontents     % Sumario
   %\listoffigures
   %\listoftables
   %\lstlistoflistings
 
-%\newpage
+\newpage
+
+\imprimeabstract %Dependendo do modelo, tem que ficar antes ou depois de \maketitle
 
 
 \setcounter{page}{1}
