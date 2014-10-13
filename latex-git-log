@@ -8,8 +8,11 @@ use warnings;
 use autodie;
 use feature qw(say);
 use utf8;
-use open qw(:std :utf8);
-binmode STDOUT, ':encoding(UTF-8)';
+#use open qw(:std :utf8);
+use open ':encoding(utf8)';
+#binmode STDOUT, ':encoding(UTF-8)';
+binmode(STDOUT, ":utf8");
+binmode(STDIN, ":encoding(utf8)");
 use IPC::System::Simple qw(capturex);
 use Getopt::Long;
 use Pod::Usage;
@@ -127,7 +130,7 @@ say '\endfoot
 # git log --pretty=format:'%ai'
 # git log --date=short --pretty=format:'%ad'
 my @lines;
-my @git_command = qw(git log --date=short --shortstat);
+my @git_command = qw(git log --date=short --shortstat --encoding=UTF-8);
 if ($print_author) {
     push( @git_command, qq(--pretty=format:%H & %an NoTinAuthorFiled& %ad & $git_command_commit_msg) );
 }
@@ -173,6 +176,18 @@ sub latex_escape {
     # Replace tilde (~) with \texttt{\~{}}
     # $paragraph =~ s/~/\\texttt\{\\~\{\}\}/g;
     $paragraph =~ s/~/\\~\{\}/g;
+
+    # Forcing right formating
+    $paragraph =~ s/Ã¡/á/g;
+    $paragraph =~ s/Ã©/é/g; 
+    $paragraph =~ s/Ã­/í/g; 
+    $paragraph =~ s/Ã³/ó/g;
+    $paragraph =~ s/Ãº/ú/g; 
+    $paragraph =~ s/Ã£/ã/g;
+    $paragraph =~ s/Ãµ/õ/g;
+    $paragraph =~ s/Ã /à/g;
+    $paragraph =~ s/Ã¬/ì/g;
+    $paragraph =~ s/Ã§/ç/g;
 
     # Now add the dollars around each \backslash
     $paragraph =~ s/(\\backslash)/\$$1\$/g;
